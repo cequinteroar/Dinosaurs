@@ -154,7 +154,7 @@ select {
     display: block;
 }
 
-#btn {
+#compare {
     border-radius: 20px;
     border: 1px solid green;
     display: inline-block;
@@ -165,7 +165,7 @@ select {
     transition: ease 0.3s all;
 }
 
-#btn:hover {
+#compare:hover {
     background: rgb(71, 165, 71);
     color: #fff;
     cursor: pointer;

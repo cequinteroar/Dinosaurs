@@ -26,21 +26,28 @@
         <div class="form-container">
             <p>Hey, give me your name Human:</p>
             <input id="name" class="form-field__full" type="name" placeholder="Your name" name="name">
-            <p>Do you know your dino's name?</p>
-            <input id="name" class="form-field__full" placeholder="Dino's name" type="name" name="name">
-            <p>Dino's height</p>
+            <p>Where are you from?</p>
+            <select id="where" class="form-field__full" name="where">
+                <option value="">Select your birth continent</option>
+                <option>South America</option>
+                <option>Central America</option>
+                <option>North America</option>
+                <option>Europe</option>
+                <option>Asia</option>
+                <option>Africa</option>
+                <option>Oceania</option>
+            </select>
+            <p>Height</p>
             <!-- <label>Feet: <input id="feet" class="form-field__short" type="number" name="feet"></label> -->
             <label>inches: <input id="inches" class="form-field__short" type="number" min=0 name="inches"></label>
-            <p>Dino's weight:</p>
-            <label>lbs: <input id="weight" class="form-field__short" type="number" min=0 name="weight"></label>
-            <p>Dino's diet:</p>
+            <p>Diet:</p>
             <select id="diet" class="form-field__full" name="diet">
-                <option>Unknown</option>
+                <option value="">Unknown</option>
                 <option>Herbavor</option>
                 <option>Omnivor</option>
                 <option>Carnivor</option>
             </select>
-            <div id="btn" onclick="compare()">Compare Me!</div>
+            <div id="compare">Compare Me!</div>
         </div>
     </form>
     <!-- .grid to attach tiles to -->
