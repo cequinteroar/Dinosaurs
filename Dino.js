@@ -1,4 +1,4 @@
-export function Dino(species, fact, location, age, diet, weight, height){
+function Dino(species, fact, location, age, diet, weight, height){
     this.species = species;
     this.fact = fact;
     this.location = location;

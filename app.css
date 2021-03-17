@@ -1,7 +1,7 @@
 /* General Styles */
 body {
-    background: rgb(111, 208, 224);
-    background: linear-gradient(0deg,rgb(111, 208, 224) 0%, rgb(171, 228, 167) 100%);
+    background: rgb(31, 100, 9);
+    background: linear-gradient(0deg, rgb(31, 100, 9) 0%,  rgb(157, 206, 140) 100%);
     font-family: 'Open Sans', sans-serif;
     text-align: center;
     min-height: 100vh;
@@ -118,7 +118,8 @@ p {
 
 /* Form Styles */
 .form-container {
-    background: #eee;
+    border: 1px solid black;
+    background: rgb(183, 223, 196);
     padding: 1.3em;
     text-align: left;
     max-width: 400px;
@@ -154,15 +155,18 @@ select {
 }
 
 #btn {
+    border-radius: 20px;
+    border: 1px solid green;
     display: inline-block;
-    background: #ccc;
+    background: green;
+    color: white;
     padding: 0.8em;
     margin: 1.2em auto;
     transition: ease 0.3s all;
 }
 
 #btn:hover {
-    background: #777;
+    background: rgb(71, 165, 71);
     color: #fff;
     cursor: pointer;
 }

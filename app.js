@@ -1,11 +1,19 @@
+async function getDinos() {
+    let response = await fetch('dino.json');
+    let data = await response.json();
+    return data.Dinos;
+}
 
-    // Create Dino Constructor
-
-
-    // Create Dino Objects
-
-
-    // Create Human Object
+// Create Dino Objects
+async function createDinos() {
+    const dinos = await getDinos();
+    let dinosObjects = [];
+    dinos.map(dino => {
+        dinosObjects.push(new Dino(dino.species, dino.fact, dino.where, dino.when, dino.diet, dino.weight, dini.height));
+    });
+    return dinosObjects;    
+} 
+    
 
     // Use IIFE to get human data from form
 
@@ -30,3 +38,7 @@
 
 
 // On button click, prepare and display infographic
+
+async function compare(){
+    const dinos = createDinos();
+}
