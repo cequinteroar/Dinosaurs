@@ -29,7 +29,7 @@ const getHumanData = (function (user) {
 
 // Create Dino Compare Method 1
 Dino.prototype.compareLocation = function (human) {
-    if(this.species !== "pigeon"){
+    if(this.species.toLowerCase() !== "pigeon"){
         if(human.location !== ""){
             let factArray = this.factArray;
             const newFact = human.location.toLowerCase() === this.location.toLowerCase() ? `Cool! Both of you are from ${human.location}` : `The dinousaur is from ${this.location}, but you are from ${human.location}`;
@@ -41,7 +41,7 @@ Dino.prototype.compareLocation = function (human) {
 
 // Create Dino Compare Method 2
 Dino.prototype.compareHeight = function (human) {
-    if(this.species !== "pigeon"){
+    if(this.species.toLowerCase() !== "pigeon"){
         if(human.height > 0){
             let factArray = this.factArray;
             const newFact = `He he, The dinousaur is ${this.height - human.height} inches taller than you`;
@@ -54,7 +54,7 @@ Dino.prototype.compareHeight = function (human) {
 
 // Create Dino Compare Method 3
 Dino.prototype.compareDiet = function (human) {
-    if(this.species !== "pigeon"){
+    if(this.species.toLowerCase() !== "pigeon"){
         if(human.diet !== ""){
             let factArray = this.factArray;
             const newFact = human.diet.toLowerCase() === this.diet.toLowerCase() ? `Cool! Both of you are ${human.diet}` : `The dinousaur is ${this.diet}, but you are ${human.diet}`;
