@@ -31,11 +31,10 @@ const getHumanData = (function (user) {
 Dino.prototype.compareLocation = function (human) {
     if(this.species !== "pigeon"){
         if(human.location !== ""){
-            let factArray = [];
-            factArray.push(this.fact);
-            const newFact = human.diet === this.diet ? `Cool! Both of you are from ${human.location}` : `The dinousaur is from ${this.location}, but you are from ${human.location}`;
+            let factArray = this.factArray;
+            const newFact = human.location.toLowerCase() === this.location.toLowerCase() ? `Cool! Both of you are from ${human.location}` : `The dinousaur is from ${this.location}, but you are from ${human.location}`;
             factArray.push(newFact);
-            this.factArray = this.factArray ? factArray : this.factArray.push(factArray);
+            this.factArray = factArray;
         }
     }
 }
@@ -44,11 +43,10 @@ Dino.prototype.compareLocation = function (human) {
 Dino.prototype.compareHeight = function (human) {
     if(this.species !== "pigeon"){
         if(human.height > 0){
-            let factArray = [];
-            factArray.push(this.fact);
+            let factArray = this.factArray;
             const newFact = `He he, The dinousaur is ${this.height - human.height} inches taller than you`;
             factArray.push(newFact);
-            this.factArray = this.factArray ? factArray : this.factArray.push(factArray);
+            this.factArray = factArray;
         }
     }
 }
@@ -58,12 +56,10 @@ Dino.prototype.compareHeight = function (human) {
 Dino.prototype.compareDiet = function (human) {
     if(this.species !== "pigeon"){
         if(human.diet !== ""){
-            let factArray = [];
-            factArray.push(this.fact);
-            const newFact = human.diet === this.diet ? `Cool! Both of you are ${human.diet}` : `The dinousaur is ${this.diet}, but you are ${human.diet}`;
+            let factArray = this.factArray;
+            const newFact = human.diet.toLowerCase() === this.diet.toLowerCase() ? `Cool! Both of you are ${human.diet}` : `The dinousaur is ${this.diet}, but you are ${human.diet}`;
             factArray.push(newFact);
-            this.factArray = this.factArray ? factArray : this.factArray.push(factArray);
-
+            this.factArray = factArray;
         }
     }
 }
@@ -87,20 +83,21 @@ function createTileInfo(dino, tileItem, human) {
     const fact = document.createElement("p");
 
     //  Dino comparison is called and fact is set
-    dino.compareDiet(human);
-    dino.compareHeight(human);
-    dino.compareLocation(human);
-    const dinoFact = dino.factArray && dino.factArray.lenght > 0 ? factArray[Math.floor(Math.random() * factArray.length)] : dino.fact;
-
+    if(dino.species){
+        dino.compareDiet(human);
+        dino.compareHeight(human);
+        dino.compareLocation(human);
+        fact.textContent = dino.factArray[Math.floor(Math.random() * dino.factArray.length)];
+    }
     // Data is sent to DOM
     title.textContent = (dino instanceof Human) ? dino.name : dino.species;
     img.src = dino.picture;
-    fact.textContent = (dino instanceof Human) ? "Hey, I'm just a human!":dinoFact;
 
     // Appending children to tile dom
     tileItem.appendChild(title);
     tileItem.appendChild(img);
-    tileItem.appendChild(fact);
+    if(dino instanceof Dino)
+        tileItem.appendChild(fact);
 }
 
 // Remove form from screen

@@ -7,6 +7,7 @@ class Dino {
         this.diet = diet;
         this.weight = weight;
         this.height = height;
+        this.factArray = [this.fact];
         this.picture = "./images/" + species + ".png";
     }
 }
