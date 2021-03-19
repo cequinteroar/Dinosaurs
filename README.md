@@ -3,8 +3,10 @@
 ## Student Info
 
 Cesar Quintero Arias
+
 Software developer
-Linked-in: [linked-in](https://www.linkedin.com/in/cequinteroar)
+
+Linked-in: [Cesar Quintero Arias](https://www.linkedin.com/in/cequinteroar)
 
 
 ## Getting Started
