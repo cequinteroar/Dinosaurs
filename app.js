@@ -14,7 +14,6 @@ async function createDinos() {
     return dinosObjects;
 }
 
-
 // Use IIFE to get human data from form
 const getHumanData = (function (user) {
     const name = document.getElementsByName("name")[0].value;
@@ -29,47 +28,80 @@ const getHumanData = (function (user) {
 
 
 // Create Dino Compare Method 1
-Dino.prototype.compareLocation = function () {
-
+Dino.prototype.compareLocation = function (human) {
+    if(this.species !== "pigeon"){
+        if(human.location !== ""){
+            let factArray = [];
+            factArray.push(this.fact);
+            const newFact = human.diet === this.diet ? `Cool! Both of you are from ${human.location}` : `The dinousaur is from ${this.location}, but you are from ${human.location}`;
+            factArray.push(newFact);
+            this.factArray = this.factArray ? factArray : this.factArray.push(factArray);
+        }
+    }
 }
 
 // Create Dino Compare Method 2
-Dino.prototype.compareHeight = function () {
-
+Dino.prototype.compareHeight = function (human) {
+    if(this.species !== "pigeon"){
+        if(human.height > 0){
+            let factArray = [];
+            factArray.push(this.fact);
+            const newFact = `He he, The dinousaur is ${this.height - human.height} inches taller than you`;
+            factArray.push(newFact);
+            this.factArray = this.factArray ? factArray : this.factArray.push(factArray);
+        }
+    }
 }
 
 
 // Create Dino Compare Method 3
-Dino.prototype.compareDiet = function () {
+Dino.prototype.compareDiet = function (human) {
+    if(this.species !== "pigeon"){
+        if(human.diet !== ""){
+            let factArray = [];
+            factArray.push(this.fact);
+            const newFact = human.diet === this.diet ? `Cool! Both of you are ${human.diet}` : `The dinousaur is ${this.diet}, but you are ${human.diet}`;
+            factArray.push(newFact);
+            this.factArray = this.factArray ? factArray : this.factArray.push(factArray);
 
+        }
+    }
 }
-
 
 // Generate Tiles for each Dino in Array
-function createTileInfo(dino, tileItem) {
-    const title = document.createElement("h3");
-    const img = document.createElement("img");
-    const fact = document.createElement("p");
-    title.textContent = dino.species;
-    img.src = dino.picture;
-    fact.textContent = (dino instanceof Human) ? "":dino.fact;
-    tileItem.appendChild(title);
-    tileItem.appendChild(img);
-    tileItem.appendChild(fact);
-}
-
 function generateTiles(dinos, human){
     let infosArray = dinos;
     infosArray.splice(4, 0, human);
     infosArray.forEach(dino => {
         const tileItem = document.createElement("div");
         tileItem.className = "grid-item";
-        createTileInfo(dino, tileItem)
+        createTileInfo(dino, tileItem, human)
         document.getElementById("grid").appendChild(tileItem);
     });
 }
 
 // Add tiles to DOM
+function createTileInfo(dino, tileItem, human) {
+    const title = document.createElement("h3");
+    const img = document.createElement("img");
+    const fact = document.createElement("p");
+
+    //  Dino comparison is called and fact is set
+    dino.compareDiet(human);
+    dino.compareHeight(human);
+    dino.compareLocation(human);
+    const dinoFact = dino.factArray && dino.factArray.lenght > 0 ? factArray[Math.floor(Math.random() * factArray.length)] : dino.fact;
+
+    // Data is sent to DOM
+    title.textContent = (dino instanceof Human) ? dino.name : dino.species;
+    img.src = dino.picture;
+    fact.textContent = (dino instanceof Human) ? "Hey, I'm just a human!":dinoFact;
+
+    // Appending children to tile dom
+    tileItem.appendChild(title);
+    tileItem.appendChild(img);
+    tileItem.appendChild(fact);
+}
 
 // Remove form from screen
 function removeForm() {
@@ -89,5 +121,5 @@ async function compare() {
 
 // On button click, prepare and display infographic
 
-const compareBtn = document.getElementById("compare");
-compareBtn.addEventListener("click", compare);
+const compareButton = document.getElementById("compare");
+compareButton.addEventListener("click", compare);
